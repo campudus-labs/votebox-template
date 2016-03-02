@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 import thunk from 'redux-thunk';
+import promiseMiddleware from './promiseMiddleware';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducer';
 import DevTools from '../components/devtools';
 
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(thunk, createLogger()),
+  applyMiddleware(thunk, createLogger(), promiseMiddleware),
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument(),
   // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
@@ -18,7 +19,7 @@ function getDebugSessionKey() {
   // You can write custom logic here!
   // By default we try to read the key from ?debug_session=<key> in the address bar
   const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
-  return (matches && matches.length > 0)? matches[1] : null;
+  return (matches && matches.length > 0) ? matches[1] : null;
 }
 
 export default function configureStore(initialState) {
@@ -29,7 +30,7 @@ export default function configureStore(initialState) {
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {
     module.hot.accept('../reducer', () =>
-      store.replaceReducer(require('../reducer')/*.default if you use Babel 6+ */)
+      store.replaceReducer(require('../reducer/index')/*.default if you use Babel 6+ */)
     );
   }
 

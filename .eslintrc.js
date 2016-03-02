@@ -2,6 +2,8 @@ module.exports = {
 
   "env" : {
     "browser" : true,
+    "es6" : true,
+    "mocha" : true,
     "node" : true
   },
 
@@ -9,6 +11,7 @@ module.exports = {
     "ecmaVersion" : 6,
     "sourceType" : "module",
     "ecmaFeatures" : {
+      "experimentalObjectRestSpread" : true,
       "jsx" : true
     }
   },

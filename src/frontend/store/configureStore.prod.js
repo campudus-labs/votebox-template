@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import promiseMiddleware from './promiseMiddleware';
 import reducer from '../reducer';
 
 // Middleware you want to use in production:
-const enhancer = applyMiddleware(thunk)(createStore);
+const enhancer = applyMiddleware(thunk, promiseMiddleware);
 
 export default function configureStore(initialState) {
   // Note: only Redux >= 3.1.0 supports passing enhancer as third argument.

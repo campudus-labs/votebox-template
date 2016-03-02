@@ -7,7 +7,7 @@ describe('test-setup', () => {
   });
 
   it('has promises enabled', () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(resolve, 1);
     });
   });

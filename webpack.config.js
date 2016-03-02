@@ -13,18 +13,13 @@ var webpack = require('webpack');
 module.exports = {
   devtool : process.env.NODE_ENV !== 'production' ? 'source-map' : '',
   entry : {
-    index : path.resolve(__dirname, 'src/index.js')
+    index : path.resolve(__dirname, 'src/frontend/index.js')
   },
   output : {
     path : 'out/',
     filename : '[name].js'
   },
   module : {
-    preLoaders : [{
-      test : /\.jsx?$/,
-      include : [new RegExp(path.join(__dirname, 'src'))],
-      loader : 'eslint'
-    }],
     loaders : [{
       test : /\.jsx?$/,
       exclude : /node_modules/,
@@ -34,7 +29,7 @@ module.exports = {
       exclude : /node_modules/,
       loader : 'babel',
       query : {
-        presets : ['es2015', 'react', 'stage-2']
+        presets : ['es2015', 'react', 'stage-0']
       }
     }, {
       test : /\.s?css$/,
@@ -51,13 +46,11 @@ module.exports = {
   },
   eslint : {
     configFile : path.resolve(__dirname, '.eslintrc.js')
-  }
-  ,
+  },
   plugins : [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV' : JSON.stringify(process.env.NODE_ENV !== 'production' ? 'development' : 'production')
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   postcss : function (webpack) {
     return [
@@ -70,8 +63,7 @@ module.exports = {
       postcssMixins,
       postcssColorFunction
     ].concat(process.env.NODE_ENV === 'production' ? [] : [cssnano()]);
-  }
-  ,
+  },
   resolve : {
     extensions : ['', '.js', '.jsx']
   }
