@@ -7,15 +7,15 @@ const initialState = Map({
 });
 
 const reducerMap = {
-  [ActionTypes.TRY_LOGIN] : (state) => {
-    return state.update('isLoggingIn', () => true);
-  },
-  [ActionTypes.SET_ACCOUNT] : (state, data) => (
-    state.update('isLoggingIn', () => false).update('isLoggedIn', () => true).merge({
+  [ActionTypes.TRY_LOGIN] : (state) => state.update('isLoggingIn', () => true),
+  [ActionTypes.SET_ACCOUNT] : (state, data) => {
+    return state.merge({
+      isLoggingIn : false,
+      isLoggedIn : true,
       username : data.username,
       id : data.id
-    })
-  )
+    });
+  }
 };
 
 export default {
