@@ -41,11 +41,7 @@ module.exports = {
     }, {
       test : /\.html$/,
       loader : "file?name=[name].[ext]"
-    }
-    ]
-  },
-  eslint : {
-    configFile : path.resolve(__dirname, '.eslintrc.js')
+    }]
   },
   plugins : [
     new webpack.DefinePlugin({
