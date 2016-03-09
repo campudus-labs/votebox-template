@@ -8,7 +8,7 @@ import DevTools from '../components/devtools';
 
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(thunk, createLogger(), promiseMiddleware),
+  applyMiddleware(thunk, promiseMiddleware, createLogger()),
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument(),
   // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
