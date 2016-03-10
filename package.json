@@ -12,7 +12,7 @@
     "lint": "eslint --ext .js --ext .jsx src/",
     "test": "npm run test:backend -s && npm run test:frontend -s",
     "test:frontend": "karma start karma-quick.config.js --single-run",
-    "test:backend": "babel-node ./node_modules/mocha/bin/_mocha \"src/backend/**/*.spec.js\" --colors",
+    "test:backend": "babel-node ./node_modules/mocha/bin/_mocha \"src/backend/**/*.spec.js\" --colors --prof",
     "watch": "parallelshell \"npm run watch:build -s\" \"npm run watch:test -s\"",
     "watch:build": "webpack-dev-server --history-api-fallback --hot --inline --display-error-details --config webpack.config.js",
     "watch:check": "watch \"npm run check -s\" src/",
